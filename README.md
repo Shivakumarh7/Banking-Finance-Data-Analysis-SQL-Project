@@ -1,4 +1,3 @@
-
 # Banking & Finance Data Analysis — SQL Project
 
 An end-to-end SQL portfolio project analyzing a retail bank's customers, accounts, transactions, loans, and cards. Built to demonstrate the full range of SQL skills a data analyst needs — from basic filtering to window functions, customer segmentation, and risk metrics.
@@ -42,7 +41,9 @@ accounts ──< transactions
 |---|---|
 | `01_schema.sql` | Table definitions + foreign key relationships |
 | `02_sample_data.sql` | Insert statements for all sample data (3,000+ rows) |
-| `03_analysis_queries.sql` | 20 business questions, Beginner → Advanced |
+| `03_analysis_queries.sql` | 20 business questions solved in SQL |
+| `Business_Problem_Statement.pdf` | The business context and the 20 questions on their own, no SQL |
+| `Banking_SQL_Query_Results.pdf` | Every question, query, screenshot, and business takeaway, as a report |
 | **`QUERY_RESULTS.md`** | **⭐ Every query with the business question, approach, screenshot, and business takeaway — start here** |
 | `screenshots/` | Query result screenshots (Q1–Q20) referenced in `QUERY_RESULTS.md` |
 | `README.md` | This file |
@@ -58,32 +59,34 @@ accounts ──< transactions
 
 > Written primarily for PostgreSQL/SQLite syntax. MySQL equivalents are noted inline as comments where syntax differs (mainly date functions).
 
-## 📊 The 20 Questions (Beginner → Advanced)
+## 📊 The 20 Business Questions
 
-### 🟢 Tier 1 — Beginner (SELECT, WHERE, ORDER BY, simple JOIN)
+**Customer & Growth**
 1. Customers who joined after a given date
 2. Account count by type
-3. 10 most recent transactions with customer names
-4. Transaction count by channel
-5. Average loan amount by loan type
+3. Top 5 customers by total transaction amount
+4. Customers who never transacted (LEFT JOIN + IS NULL)
+5. Customer segmentation — Premium / Standard / Low Activity / Dormant Risk (CTE + CASE)
 
-### 🟡 Tier 2 — Intermediate (multi-table JOINs, GROUP BY/HAVING, subqueries)
-6. Total deposits vs. withdrawals
-7. Month-over-month transaction volume trend
-8. Top 5 customers by total transaction amount
-9. Loan amount & average interest rate by type and status
-10. Customers with more than one active loan (HAVING)
-11. % of transaction volume by channel
-12. Customers who never transacted (LEFT JOIN + IS NULL)
-13. Total account balance held per branch
+**Operations & Channels**
+6. 10 most recent transactions with customer names
+7. Transaction count by channel
+8. % of transaction volume by channel
+9. Average transaction amount by channel, ranked
 
-### 🔴 Tier 3 — Advanced (window functions, CTEs, segmentation, risk metrics)
-14. Customer balance rank within each branch (`RANK() OVER PARTITION BY`)
-15. Cumulative monthly deposits (running total)
-16. Month-over-month transaction growth rate (`LAG()`)
-17. **Customer segmentation** — Premium / Standard / Low Activity / Dormant Risk (CTE + CASE)
-18. Average transaction amount by channel, ranked
-19. **Loan default rate by loan type** (risk analysis)
+**Finance & Performance**
+10. Total deposits vs. withdrawals
+11. Month-over-month transaction volume trend
+12. Cumulative monthly deposits (running total)
+13. Month-over-month transaction growth rate (`LAG()`)
+14. Total account balance held per branch
+15. Customer balance rank within each branch (`RANK() OVER PARTITION BY`)
+
+**Lending & Risk**
+16. Loan amount & average interest rate by type and status
+17. Average loan amount by loan type
+18. Customers with more than one active loan (HAVING)
+19. Loan default rate by loan type (risk analysis)
 20. Top borrower per branch (`ROW_NUMBER() OVER PARTITION BY`)
 
 ## 🔑 SQL Concepts Demonstrated
@@ -104,3 +107,12 @@ accounts ──< transactions
 - **Personal and Business loans show the highest default rates**, while Home loans are the most stable — useful signal for underwriting policy.
 - A meaningful group of customers have open accounts but **zero recorded transactions**, flagging them as dormant-risk / re-engagement targets.
 - One branch holds significantly more total deposits than others, suggesting either a wealthier customer base or an opportunity to replicate that branch's acquisition strategy elsewhere.
+
+## 🚀 Possible Extensions
+
+- Connect this schema to Tableau/Power BI for an executive dashboard.
+- Add a `credit_score` column to customers and correlate it with loan default rates.
+- Build a fraud-detection query flagging unusually large or rapid-fire transactions per account.
+
+---
+*This is an original project — schema, dataset, and all 20 queries were custom-built and tested end-to-end for portfolio purposes.*
